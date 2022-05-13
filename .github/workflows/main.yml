@@ -16,5 +16,5 @@ jobs:
           echo "::set-output name=Json:{\"name\": \"Harsha\", \"Place\": \"Irvine\"}"
       - run: |
           echo "Triggered in main branch"
-          echo "Previous step output: "${{ steps.sample.outputs.Json }}
+          echo "Previous step output: ${{ steps.sample.outputs.Json }}"
         shell: bash
