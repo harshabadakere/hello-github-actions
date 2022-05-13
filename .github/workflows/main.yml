@@ -10,5 +10,11 @@ jobs:
     environment: dev
     steps:
       - uses: actions/checkout@v1
-      - run: echo "Triggered in main branch"
+      - name: Output Step
+        id: sample
+        run: |
+          echo "::set-output name=Json:{\"name\": \"Harsha\", \"Place\": \"Irvine\"}"
+      - run: |
+          echo "Triggered in main branch"
+          echo "Previous step output: "${{ steps.sample.outputs.Json }}
         shell: bash
