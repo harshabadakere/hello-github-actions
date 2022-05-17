@@ -1,7 +1,7 @@
 name: "Second workflow"
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs: 
       environment:
         type: string
@@ -23,6 +23,5 @@ jobs:
       - name: Print workspace contents
         run: |
           ls -ltr
-          echo ${{github.event.inputs.environment}}
           echo ${{inputs.environment}}
           
