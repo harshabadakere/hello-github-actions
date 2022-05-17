@@ -1,0 +1,22 @@
+name: "Second workflow"
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  second-workflow:
+    name: "Second Workflow"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download first workspace
+        uses: actions/download-artifact@master
+        with:
+          name: sample-workspace
+          path: ${{ github.workspace }}
+     -  name: Print workspace contents
+        run: ls -ltr
+          
