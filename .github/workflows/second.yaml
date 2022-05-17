@@ -2,7 +2,15 @@ name: "Second workflow"
 
 on:
   workflow_dispatch:
-    
+    inputs: 
+      environment:
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
 jobs:
   second-workflow:
     name: "Second Workflow Steps"
@@ -18,5 +26,7 @@ jobs:
           name: sample-workspace
           path: ${{ github.workspace }}
       - name: Print workspace contents
-        run: ls -ltr
+        run: |
+          ls -ltr
+          echo ${{inputs.environment}}
           
