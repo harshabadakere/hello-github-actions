@@ -6,11 +6,6 @@ on:
       environment:
         type: string
         required: true
-  workflow_call:
-    inputs:
-      environment:
-        type: string
-        required: true
 jobs:
   second-workflow:
     name: "Second Workflow Steps"
