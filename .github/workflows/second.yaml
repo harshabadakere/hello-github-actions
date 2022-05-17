@@ -28,5 +28,5 @@ jobs:
       - name: Print workspace contents
         run: |
           ls -ltr
-          echo ${{inputs.environment}}
+          echo ${{github.event.inputs.environment}}
           
