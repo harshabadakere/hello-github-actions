@@ -18,3 +18,9 @@ jobs:
           echo "Triggered in main branch"
           echo ${{ fromJson(steps.sample.outputs.Json).name }}
         shell: bash
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: sample-workspace
+          path: ${{ github.workspace }}
+          retention-days: 1
