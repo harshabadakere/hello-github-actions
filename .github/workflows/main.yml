@@ -28,4 +28,5 @@ jobs:
     uses: ./.github/workflows/second.yaml
     with:
       environment: dev
+    needs: build
     
