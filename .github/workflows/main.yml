@@ -2,13 +2,10 @@ name: A workflow for my Hello World file
 on:
   workflow_dispatch:
     inputs:
-      jobs_to_run:
-        required: false
-        type: choice
-        options:
-          - Second workflow
-          - Third workflow
-        default: ""
+      second:
+        type: boolean
+      third:
+        type: boolean
 
 jobs:
   build:
@@ -33,9 +30,14 @@ jobs:
           path: ${{ github.workspace }}
           retention-days: 1
   second:
-    if: ${{github.event.inputs.jobs_to_run == 'Second workflow' }}
+    if: ${{github.event.inputs.second }}
     uses: ./.github/workflows/second.yaml
     with:
       environment: dev
     needs: build
+  third:
+    if: ${{github.event.inputs.third}}
+    runs-on: ubuntu-latest
+    steps: |
+      echo 'Calling third workflow'
     
