@@ -29,4 +29,5 @@ jobs:
         run: |
           ls -ltr
           echo ${{github.event.inputs.environment}}
+          echo ${{inputs.environment}}
           
