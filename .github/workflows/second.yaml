@@ -14,6 +14,7 @@ jobs:
       - name: Download first workspace
         uses: actions/download-artifact@master
         with:
+          workflow: main.yml
           name: sample-workspace
           path: ${{ github.workspace }}
       - name: Print workspace contents
