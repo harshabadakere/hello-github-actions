@@ -32,7 +32,7 @@ jobs:
           path: ${{ github.workspace }}
           retention-days: 1
   second:
-    if: ${{github.event.inputs.jobs_to_run == "Second workflow" }}
+    if: ${{github.event.inputs.jobs_to_run == 'Second workflow' }}
     uses: ./.github/workflows/second.yaml
     with:
       environment: dev
