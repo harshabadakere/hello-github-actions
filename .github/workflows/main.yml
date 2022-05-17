@@ -24,3 +24,8 @@ jobs:
           name: sample-workspace
           path: ${{ github.workspace }}
           retention-days: 1
+  second:
+    uses: ./.github/workflows/second.yaml
+    with:
+      environment: dev
+    
