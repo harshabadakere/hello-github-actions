@@ -38,6 +38,7 @@ jobs:
   third:
     if: ${{github.event.inputs.third}}
     runs-on: ubuntu-latest
-    steps: |
-      echo 'Calling third workflow'
+    steps: 
+      - run: |
+          echo 'Calling third workflow'
     
