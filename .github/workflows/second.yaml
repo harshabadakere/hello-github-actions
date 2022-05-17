@@ -12,7 +12,7 @@ jobs:
       contents: read
     steps:
       - name: Download first workspace
-        uses: actions/download-artifact@master
+        uses: dawidd6/action-download-artifact@v2
         with:
           workflow: main.yml
           name: sample-workspace
