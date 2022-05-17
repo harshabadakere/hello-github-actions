@@ -35,10 +35,8 @@ jobs:
     with:
       environment: dev
     needs: build
+    
   third:
     if: ${{github.event.inputs.third == 'true'}}
-    runs-on: ubuntu-latest
-    steps: 
-      - run: |
-          echo 'Calling third workflow'
+    uses: ./.github/workflows/nested/third.yml
     
