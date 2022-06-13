@@ -31,7 +31,7 @@ jobs:
           fi
         shell: bash
       - name: Deploy 1
-        if: ${{ contains(env.DEPLOY_LIST, 'Deploy-1') || contains(env.DEPLOY_LIST, 'Deploy-All') }}
+        if: ${{ contains(env.DEPLOY_LIST, 'Deploy_1') || contains(env.DEPLOY_LIST, 'Deploy_All') }}
         run: |
           echo ${{ env.DEPLOY_LIST }}
           echo "Deploy 1 executing"
