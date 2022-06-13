@@ -2,39 +2,10 @@ name: Test user Inputs
 on:
   workflow_dispatch:
     inputs:
-      Deploy-1:
-        type: boolean
-        required: false
-      Deploy-2:
-        type: boolean
-        required: false
-      Deploy-3:
-        type: boolean
-        required: false
-      Deploy-4:
-        type: boolean
-        required: false
-      Deploy-5:
-        type: boolean
-        required: false
-      Deploy-6:
-        type: boolean
-        required: false
-      Deploy-7:
-        type: boolean
-        required: false
-      Deploy-8:
-        type: boolean
-        required: false
-      Deploy-9:
-        type: boolean
-        required: false
-      Deploy-10:
-        type: boolean
-        required: false
-      Deploy-11:
-        type: boolean
-        required: false
+      Deploy-List:
+        type: string
+        required: true
+        description: "Please use one or more of the following values as a comma separated list.\nDeploy-All,Deploy-1,Deploy-2,Deploy-3,Deploy-4"
 jobs:
   deploy-stack:
     name: "OSDU DP Deploy Infra"
