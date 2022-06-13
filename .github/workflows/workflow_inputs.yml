@@ -20,8 +20,10 @@ jobs:
       - name: Input Validation
         run: |
           DEPLOY_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo 'Deploy' | wc -l)
+          echo $DEPLOY_COUNT
           if [[ $DEPLOY_COUNT > 1 ]]; then
             COMMA_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo ',' | wc -l)
+            echo $COMMA_COUNT
             if [[ $COMMA_COUNT != $DEPLOY_COUNT-1 ]]; then
               echo "Please input all values separated by commas"
               exit 1
