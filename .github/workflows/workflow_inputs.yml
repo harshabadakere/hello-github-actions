@@ -23,7 +23,7 @@ jobs:
       contents: read
     steps:
       - name: Deploy 1
-        if: ${{ github.event.inputs."Deploy-1" }}
+        if: ${{ github.event.inputs.Deploy-1 }}
         run: |
           echo "Deploy 1 executing"
       - name: Deploy 2
