@@ -5,7 +5,13 @@ on:
       Deploy-List:
         type: string
         required: true
-        description: "Please use one or more of the following values as a comma separated list.\nDeploy-All\n,Deploy-1\n,Deploy-2\n,Deploy-3\n,Deploy-4"
+        description: |
+          "Please use one or more of the following values as a comma separated list.\n
+          Deploy-All\n,
+          Deploy-1\n,
+          Deploy-2\n,
+          Deploy-3\n,
+          Deploy-4"
 jobs:
   deploy-stack:
     name: "OSDU DP Deploy Infra"
