@@ -7,11 +7,13 @@ on:
         required: true
         description: |
           Please use one or more of the following values as a comma separated list.
-          Deploy-All \
-          Deploy-1 \
-          Deploy-2 \
-          Deploy-3 \
+          Deploy-All
+          Deploy-1
+          Deploy-2
+          Deploy-3
           Deploy-4
+env: 
+  DEPLOY_LIST: ${{ github.event.inputs.Deploy-List }}
 jobs:
   deploy-stack:
     name: "OSDU DP Deploy Infra"
@@ -19,8 +21,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    env: 
-      DEPLOY_LIST: ${{ github.event.inputs.Deploy-List }}
+    
     steps:
       - name: Deploy 1
         if: contains(${{ env.DEPLOY_LIST }}, "Deploy-1")
