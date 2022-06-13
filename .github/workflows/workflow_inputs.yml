@@ -24,7 +24,7 @@ jobs:
     
     steps:
       - name: Deploy 1
-        if: contains(${{ env.DEPLOY_LIST }}, "Deploy-1")
+        if: contains(env.DEPLOY_LIST, "Deploy-1")
         run: |
           echo ${{ env.DEPLOY_LIST }}
           echo "Deploy 1 executing"
