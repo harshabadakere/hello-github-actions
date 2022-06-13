@@ -26,7 +26,7 @@ jobs:
       - name: Deploy 1
         if: contains(${{ env.DEPLOY_LIST }}, "Deploy-1")
         run: |
-          echo ${{ github.env.DEPLOY_LIST }}
+          echo ${{ env.DEPLOY_LIST }}
           echo "Deploy 1 executing"
       - name: Deploy 2
         if: ${{ github.event.inputs.Deploy-2 == 'true' }}
