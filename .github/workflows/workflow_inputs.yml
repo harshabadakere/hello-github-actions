@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+    inputs:
+      deploy 1:
+        type: boolean
+        required: false
+      deploy 2:
+        type: boolean
+        required: false
+      deploy 3:
+        type: boolean
+        required: false
+      deploy 4:
+        type: boolean
+        required: false
+  jobs:
+    deploy-stack:
+      name: "OSDU DP Deploy Infra"
+      runs-on: ubuntu-latest
+    
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Deploy 1
+        if: ${{ github.event.inputs."Deploy 1" }}
+        run: |
+          echo "Deploy 1 executing"
+     - name: Deploy 2
+        run: |
+          echo "Deploy 2 executing"
+     - name: Deploy 3
+        run: |
+          echo "Deploy 3 executing"
+     - name: Deploy 4
+        run: |
+          echo "Deploy 4 executing"
+  
