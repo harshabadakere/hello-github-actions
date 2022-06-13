@@ -5,7 +5,7 @@ on:
       Deploy-List:
         type: string
         required: true
-        description: 'Please use one or more of the following values as a comma separated list. \n Deploy_All,Deploy_1,Deploy_2,Deploy_3,Deploy_4'
+        description: 'Please use one or more of the following values as a comma separated list: Deploy_All,Deploy_1,Deploy_2,Deploy_3,Deploy_4'
 env: 
   DEPLOY_LIST: ${{ github.event.inputs.Deploy-List }}
 jobs:
@@ -17,6 +17,17 @@ jobs:
       contents: read
     
     steps:
+      - name: Input Validation
+        run: |
+          DEPLOY_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo 'Deploy' | wc -l)
+          if [[ $DEPLOY_COUNT > 1 ]]; then
+            COMMA_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo ',' | wc -l)
+            if [[ $COMMA_COUNT != $DEPLOY_COUNT-1 ]]; then
+              echo "Please input all values separated by commas"
+              exit 1
+            fi
+          fi
+        shell: bash
       - name: Deploy 1
         if: contains(env.DEPLOY_LIST, 'Deploy-1') || contains(env.DEPLOY_LIST, 'Deploy-All')
         run: |
