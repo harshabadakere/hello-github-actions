@@ -2,16 +2,16 @@ name: Test user Inputs
 on:
   workflow_dispatch:
     inputs:
-      deploy 1:
+      Deploy-1:
         type: boolean
         required: false
-      deploy 2:
+      Deploy-2:
         type: boolean
         required: false
-      deploy 3:
+      Deploy-3:
         type: boolean
         required: false
-      deploy 4:
+      Deploy-4:
         type: boolean
         required: false
 jobs:
@@ -23,16 +23,19 @@ jobs:
       contents: read
     steps:
       - name: Deploy 1
-        if: ${{ github.event.inputs."Deploy 1" }}
+        if: ${{ github.event.inputs."Deploy-1" }}
         run: |
           echo "Deploy 1 executing"
       - name: Deploy 2
+        if: ${{ github.event.inputs."Deploy-2" }}
         run: |
           echo "Deploy 2 executing"
       - name: Deploy 3
+        if: ${{ github.event.inputs."Deploy-3" }}
         run: |
           echo "Deploy 3 executing"
       - name: Deploy 4
+        if: ${{ github.event.inputs."Deploy-4" }}
         run: |
           echo "Deploy 4 executing"
   
