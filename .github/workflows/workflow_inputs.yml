@@ -5,7 +5,7 @@ on:
       Deploy-List:
         type: string
         required: true
-        description: "Please use one or more of the following values as a comma separated list. Deploy-All,Deploy-1,Deploy-2,Deploy-3,Deploy-4"
+        description: "Please use one or more of the following values as a comma separated list. Deploy_All,Deploy_1,Deploy_2,Deploy_3,Deploy_4"
 env: 
   DEPLOY_LIST: ${{ github.event.inputs.Deploy-List }}
 jobs:
