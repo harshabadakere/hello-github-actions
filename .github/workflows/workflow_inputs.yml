@@ -14,6 +14,27 @@ on:
       Deploy-4:
         type: boolean
         required: false
+      Deploy-5:
+        type: boolean
+        required: false
+      Deploy-6:
+        type: boolean
+        required: false
+      Deploy-7:
+        type: boolean
+        required: false
+      Deploy-8:
+        type: boolean
+        required: false
+      Deploy-9:
+        type: boolean
+        required: false
+      Deploy-10:
+        type: boolean
+        required: false
+      Deploy-11:
+        type: boolean
+        required: false
 jobs:
   deploy-stack:
     name: "OSDU DP Deploy Infra"
