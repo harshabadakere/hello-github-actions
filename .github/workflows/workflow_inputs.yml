@@ -6,12 +6,12 @@ on:
         type: string
         required: true
         description: |
-          "Please use one or more of the following values as a comma separated list.\n
-          Deploy-All\n,
-          Deploy-1\n,
-          Deploy-2\n,
-          Deploy-3\n,
-          Deploy-4"
+          Please use one or more of the following values as a comma separated list.
+          Deploy-All
+          Deploy-1
+          Deploy-2
+          Deploy-3
+          Deploy-4
 jobs:
   deploy-stack:
     name: "OSDU DP Deploy Infra"
