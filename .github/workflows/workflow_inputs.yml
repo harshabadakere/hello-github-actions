@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Input Validation
         run: |
-          set -x
           DEPLOY_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo 'Deploy' | wc -l)
           echo $DEPLOY_COUNT
           if [[ $DEPLOY_COUNT -gt 1 ]]; then
