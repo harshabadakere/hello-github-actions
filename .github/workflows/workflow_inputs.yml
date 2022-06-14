@@ -27,7 +27,6 @@ jobs:
               exit 1
             fi
           fi
-        shell: bash
       - name: Deploy 1
         if: ${{ contains(env.DEPLOY_LIST, 'Deploy_1') || contains(env.DEPLOY_LIST, 'Deploy_All') }}
         run: |
