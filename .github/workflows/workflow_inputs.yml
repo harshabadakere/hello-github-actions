@@ -1,7 +1,9 @@
 name: Env Variable Passing
 on:
   workflow_dispatch:
-    
+env:
+  MYVAR: pass
+  
 jobs:
   set-env:
     name: "Set Env Variable"
@@ -17,13 +19,10 @@ jobs:
       - name: Set env variable
         if: always()
         run: |
-          echo "MYVAR=Failed" >> $GITHUB_ENV
+          echo "MYVAR=fail" >> $GITHUB_ENV
           
       - name: Print env variable
         run: echo $MYVAR
-        
-    outputs:
-      myVar: ${{ env.MYVAR }}
         
   get-env:
     name: "Get Env Variable"
@@ -35,6 +34,6 @@ jobs:
     
     steps:
       - name: Get env variable
-        run: echo ${{needs.set-env.outputs.myVar }}
+        run: echo ${{ env.MYVAR }}
       
   
