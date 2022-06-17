@@ -27,6 +27,6 @@ jobs:
     
     steps:
       - name: Get env variable
-        run: echo ${{needs.set-env.MYVAR }}
+        run: echo ${{needs.set-env.env.MYVAR }}
       
   
