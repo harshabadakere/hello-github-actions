@@ -40,7 +40,7 @@ jobs:
     needs: job1
     if: |
       (needs.job1.result == 'success' || needs.job1.result == 'skipped') &&
-      (contains(github.event.inputs.jobs_to_run, 'job2')
+      (contains(github.event.inputs.jobs_to_run, 'job2'))
 
     permissions:
       id-token: write
@@ -56,7 +56,7 @@ jobs:
     needs: job2
     if: |
       (needs.job2.result == 'success' || needs.job2.result == 'skipped') &&
-      (contains(github.event.inputs.jobs_to_run, 'job3')
+      (contains(github.event.inputs.jobs_to_run, 'job3'))
     permissions:
       id-token: write
       contents: read
