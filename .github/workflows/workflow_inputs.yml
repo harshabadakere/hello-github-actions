@@ -16,6 +16,8 @@ jobs:
           echo "MYVAR=Success" >> $GITHUB_ENV
       - name: Print env variable
         run: echo $MYVAR
+    outputs:
+      myVar: ${{ env.MYVAR }}
         
   get-env:
     name: "Get Env Variable"
@@ -27,6 +29,6 @@ jobs:
     
     steps:
       - name: Get env variable
-        run: echo ${{needs.set-env.env.MYVAR }}
+        run: echo ${{needs.set-env.outputs.myVar }}
       
   
