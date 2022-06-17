@@ -51,6 +51,13 @@ jobs:
       - name: Running Job2
         run: echo "Job2 Triggered"
         
+      - name: Set job status
+        if: |
+          always() &&
+          (needs.job1.result == 'failure')
+        run: exit 1
+          
+        
   job3:
     name: "Run Job3"
     runs-on: ubuntu-latest
