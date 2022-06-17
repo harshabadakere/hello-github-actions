@@ -11,11 +11,17 @@ jobs:
       contents: read
     
     steps:
+      - name: Fail the Job
+        run: exit 1
+        
       - name: Set env variable
+        if: always()
         run: |
-          echo "MYVAR=Success" >> $GITHUB_ENV
+          echo "MYVAR=Failed" >> $GITHUB_ENV
+          
       - name: Print env variable
         run: echo $MYVAR
+        
     outputs:
       myVar: ${{ env.MYVAR }}
         
