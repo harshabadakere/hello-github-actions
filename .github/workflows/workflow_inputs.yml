@@ -1,47 +1,28 @@
-name: Test user Inputs
+name: Env Variable Passing
 on:
   workflow_dispatch:
-    inputs:
-      Deploy-List:
-        type: string
-        required: true
-        description: 'Please use one or more of the following values as a comma separated list: Deploy_All,Deploy_1,Deploy_2,Deploy_3,Deploy_4'
-env: 
-  DEPLOY_LIST: ${{ github.event.inputs.Deploy-List }}
+    
 jobs:
-  deploy-stack:
-    name: "OSDU DP Deploy Infra"
+  set-env:
+    name: "Set Env Variable"
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
     
     steps:
-      - name: Input Validation
+      - name: Set env variable
         run: |
-          DEPLOY_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo 'Deploy' | wc -l)
-          if [[ $DEPLOY_COUNT -gt 1 ]]; then
-            COMMA_COUNT=$(echo -n $DEPLOY_LIST | grep -Fo ',' | wc -l)
-            if [[ $COMMA_COUNT -ne $DEPLOY_COUNT-1 ]]; then
-              echo "Input Validation Failed: Please input all values separated by commas"
-              exit 1
-            fi
-          fi
-      - name: Deploy 1
-        if: ${{ contains(env.DEPLOY_LIST, 'Deploy_1') || contains(env.DEPLOY_LIST, 'Deploy_All') }}
-        run: |
-          echo ${{ env.DEPLOY_LIST }}
-          echo "Deploy 1 executing"
-      - name: Deploy 2
-        if: ${{ github.event.inputs.Deploy-2 == 'true' }}
-        run: |
-          echo "Deploy 2 executing"
-      - name: Deploy 3
-        if: ${{ github.event.inputs.Deploy-3 == 'true' }}
-        run: |
-          echo "Deploy 3 executing"
-      - name: Deploy 4
-        if: ${{ github.event.inputs.Deploy-4 == 'true' }}
-        run: |
-          echo "Deploy 4 executing"
+          echo "MYVAR=Success" >> $GITHUB_ENV
+  get-env:
+    name: "Get Env Variable"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Get env variable
+        run: echo $MYVAR
+      
   
