@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Conditionally fail the Job
         run: |
-          if [[ ${{github.event.inputs.workflow == 'fail' ]]; then
+          if [[ ${{github.event.inputs.workflow}} == 'fail' ]]; then
             exit 1
           fi
         
