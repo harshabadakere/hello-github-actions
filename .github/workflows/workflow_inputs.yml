@@ -14,6 +14,9 @@ jobs:
       - name: Set env variable
         run: |
           echo "MYVAR=Success" >> $GITHUB_ENV
+      - name: Print env variable
+        run: echo $MYVAR
+        
   get-env:
     name: "Get Env Variable"
     runs-on: ubuntu-latest
