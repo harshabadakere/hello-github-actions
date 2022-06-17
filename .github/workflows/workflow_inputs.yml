@@ -12,9 +12,6 @@ jobs:
   job1:
     name: "Run Job1"
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     
     steps:
       - name: Conditionally fail the Job
