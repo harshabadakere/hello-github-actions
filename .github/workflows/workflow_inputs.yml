@@ -37,10 +37,11 @@ jobs:
   job2:
     name: "Run Job2"
     runs-on: ubuntu-latest
-    needs: job1
     if: |
+      always() &&
       (needs.job1.result == 'success' || needs.job1.result == 'skipped') &&
       (contains(github.event.inputs.jobs_to_run, 'job2'))
+    needs: job1
 
     permissions:
       id-token: write
@@ -53,10 +54,12 @@ jobs:
   job3:
     name: "Run Job3"
     runs-on: ubuntu-latest
-    needs: job2
     if: |
+      always() &&
       (needs.job2.result == 'success' || needs.job2.result == 'skipped') &&
       (contains(github.event.inputs.jobs_to_run, 'job3'))
+    needs: job2
+    
     permissions:
       id-token: write
       contents: read
