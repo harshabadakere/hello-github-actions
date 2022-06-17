@@ -29,6 +29,7 @@ jobs:
               console.log('Cancelling ...');
               const run_id = "${{ github.run_id }}";
               await github.actions.cancelWorkflowRun({ owner, repo, run_id });
+              sleep(20)
           
       - name: Running Job1
         run: echo "Job1 Triggered"
