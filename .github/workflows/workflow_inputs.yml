@@ -1,40 +1,63 @@
 name: Env Variable Passing
 on:
   workflow_dispatch:
-env:
-  MYVAR: pass
+    inputs:
+      workflow:
+        type: choice
+        options:
+          - pass
+          - fail
   
 jobs:
-  set-env:
-    name: "Set Env Variable"
+  job1:
+    name: "Run Job1"
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
     
     steps:
-      - name: Fail the Job
-        run: exit 1
-        
-      - name: Set env variable
-        if: always()
+      - name: Conditionally fail the Job
         run: |
-          echo "MYVAR=fail" >> $GITHUB_ENV
-          
-      - name: Print env variable
-        run: echo $MYVAR
+          if [[ ${{github.event.inputs.workflow == 'fail' ]]; then
+            exit 1
+          fi
         
-  get-env:
-    name: "Get Env Variable"
+      - name: cancel workflow
+        if: failure()
+        uses: andymckay/cancel-action@0.2
+          
+      - name: Running Job1
+        run: echo "Job1 Triggered"
+        
+  job2:
+    name: "Run Job2"
     runs-on: ubuntu-latest
-    needs: set-env
-    if: always()
+    needs: job1
+    if: |
+      always() &&
+      (needs.job1.result == 'success' || needs.job1.result == 'skipped')
     permissions:
       id-token: write
       contents: read
     
     steps:
-      - name: Get env variable
-        run: echo ${{ env.MYVAR }}
+      - name: Running Job2
+        run: echo "Job2 Triggered"
+        
+  job3:
+    name: "Run Job3"
+    runs-on: ubuntu-latest
+    needs: job2
+    if: |
+      always() &&
+      (needs.job2.result == 'success' || needs.job2.result == 'skipped')
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Running Job3
+        run: echo "Job3 Triggered"
       
   
