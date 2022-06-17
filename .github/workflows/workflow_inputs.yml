@@ -20,16 +20,9 @@ jobs:
             exit 1
           fi
         
-      - uses: actions/github-script@v2
-        id: check
+      - name: Cancel workflow if failure
         if: failure()
-        with:
-          script: |
-            const { owner, repo } = context.repo
-              console.log('Cancelling ...');
-              const run_id = "${{ github.run_id }}";
-              await github.actions.cancelWorkflowRun({ owner, repo, run_id });
-              sleep(20)
+        uses: andymckay/cancel-action@0.2
           
       - name: Running Job1
         run: echo "Job1 Triggered"
