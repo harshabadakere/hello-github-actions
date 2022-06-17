@@ -25,7 +25,7 @@ jobs:
         
       - uses: actions/github-script@v2
         id: check
-        if: fail()
+        if: failure()
         with:
           script: |
             const { owner, repo } = context.repo
