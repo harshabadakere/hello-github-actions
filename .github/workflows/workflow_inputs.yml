@@ -7,10 +7,17 @@ on:
         options:
           - pass
           - fail
+      jobs_to_run:
+        type: string
+        required: true
+        description: |
+          Enetr one or more jobs from  list.
+          job1,job2,job3
   
 jobs:
   job1:
     name: "Run Job1"
+    if: contains(github.event.inputs.jobs_to_run, 'job1')
     runs-on: ubuntu-latest
     
     steps:
@@ -32,7 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     if: |
-      (needs.job1.result == 'success' || needs.job1.result == 'skipped')
+      (needs.job1.result == 'success' || needs.job1.result == 'skipped') &&
+      (contains(github.event.inputs.jobs_to_run, 'job2')
+
     permissions:
       id-token: write
       contents: read
@@ -46,7 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: job2
     if: |
-      (needs.job2.result == 'success' || needs.job2.result == 'skipped')
+      (needs.job2.result == 'success' || needs.job2.result == 'skipped') &&
+      (contains(github.event.inputs.jobs_to_run, 'job3')
     permissions:
       id-token: write
       contents: read
