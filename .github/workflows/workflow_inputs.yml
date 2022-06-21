@@ -33,7 +33,7 @@ jobs:
         with:
           name: WORKFLOW_FAILED
           value: failure
-          pa_token: ${{ secrets.PA_TOKEN }}
+          pa_token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Running Job1
         run: echo "Job1 Triggered"
