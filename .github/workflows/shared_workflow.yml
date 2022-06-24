@@ -18,7 +18,7 @@ jobs:
         #if: |
         #  (fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_1))
         run: |
-          echo $inputs.deploy_stacks
+          echo ${inputs.deploy_stacks}
           echo ${{fromJson(inputs.deploy_stacks).deploy_1}}
           echo "Job1 Triggered"
         
@@ -33,7 +33,9 @@ jobs:
     steps:
       - name: Running Job2
         #if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_2) }}
-        run: echo "Job2 Triggered"
+        run: |
+          echo ${{fromJson(inputs.deploy_stacks).deploy_2}}
+          echo "Job2 Triggered"
         
   job3:
     name: "Run Job3"
@@ -46,5 +48,7 @@ jobs:
     steps:
       - name: Running Job3
         #if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_3 }}
-        run: echo "Job3 Triggered"
+        run: |
+          echo ${{fromJson(inputs.deploy_stacks).deploy_3}}
+          echo "Job3 Triggered"
       
