@@ -20,12 +20,12 @@ jobs:
     uses: ./.github/workflows/shared_workflow.yml
     with:
       deploy_stacks: |
-        {
+        '{
           "deploy_all": "${{github.event.inputs.Deploy_All}}",
           "deploy_1": "${{github.event.inputs.Deploy_1}}",
           "deploy_2": "${{github.event.inputs.Deploy_2}}",
           "deploy_3": "${{github.event.inputs.Deploy_3}}",
           "deploy_4": "${{github.event.inputs.Deploy_4}}",
           "deploy_5": "${{github.event.inputs.Deploy_5}}"
-        }  
+        }' 
   
