@@ -16,7 +16,7 @@ on:
         type: boolean  
   
 jobs:
-  job1:
+  job:
     uses: ./.github/workflows/shared_workflow.yml
     with:
       deploy_stacks: |
