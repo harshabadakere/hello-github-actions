@@ -17,15 +17,15 @@ on:
   
 jobs:
   job1:
-    uses: /.github/workflows/shared-workflow.yml
+    uses: /.github/workflows/shared_workflow.yml
     with:
       deploy_stacks: |
         {
           "deploy_all": "${{github.event.inputs.Deploy_All}}",
-          "deploy_shared_infra": "${{github.event.inputs.Deploy_1}}",
-          "deploy_eks_infra": "${{github.event.inputs.Deploy_2}}",
-          "deploy_eks_data": "${{github.event.inputs.Deploy_3}}",
-          "deploy_common_data": "${{github.event.inputs.Deploy_4}}",
-          "deploy_core_apis": "${{github.event.inputs.Deploy_5}}"
+          "deploy_1": "${{github.event.inputs.Deploy_1}}",
+          "deploy_2": "${{github.event.inputs.Deploy_2}}",
+          "deploy_3": "${{github.event.inputs.Deploy_3}}",
+          "deploy_4": "${{github.event.inputs.Deploy_4}}",
+          "deploy_5": "${{github.event.inputs.Deploy_5}}"
         }  
   
