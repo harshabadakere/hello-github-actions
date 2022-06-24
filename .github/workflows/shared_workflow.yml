@@ -32,7 +32,7 @@ jobs:
     
     steps:
       - name: Running Job2
-        if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_2) }}
+        #if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_2) }}
         run: echo "Job2 Triggered"
         
   job3:
@@ -45,6 +45,6 @@ jobs:
     
     steps:
       - name: Running Job3
-        if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_3 }}
+        #if: ${{ fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_3 }}
         run: echo "Job3 Triggered"
       
