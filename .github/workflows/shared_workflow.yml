@@ -15,7 +15,7 @@ jobs:
       contents: read
     steps:  
       - name: Running Job1
-        if: ${{(fromJson(inputs.deploy_stacks).deploy_1 == true) || (fromJson(inputs.deploy_stacks).deploy_all == true)}}
+        if: (fromJson(inputs.deploy_stacks).deploy_1 == true) || fromJson(inputs.deploy_stacks).deploy_all == true)
         run: |
           echo ${{fromJson(inputs.deploy_stacks).deploy_1}}
           echo "Job1 Triggered"
@@ -30,7 +30,7 @@ jobs:
     
     steps:
       - name: Running Job2
-        if: ${{(fromJson(inputs.deploy_stacks).deploy_2 == true) || || (fromJson(inputs.deploy_stacks).deploy_all == true)}}
+        if: (fromJson(inputs.deploy_stacks).deploy_2 == true || fromJson(inputs.deploy_stacks).deploy_all == true)
         run: |
           echo ${{fromJson(inputs.deploy_stacks).deploy_2}}
           echo "Job2 Triggered"
@@ -45,7 +45,7 @@ jobs:
     
     steps:
       - name: Running Job3
-        if: ${{(fromJson(inputs.deploy_stacks).deploy_3 == true) || || (fromJson(inputs.deploy_stacks).deploy_all == true)}}
+        if: (fromJson(inputs.deploy_stacks).deploy_3 == true || fromJson(inputs.deploy_stacks).deploy_all == true)
         run: |
           echo ${{fromJson(inputs.deploy_stacks).deploy_3}}
           echo "Job3 Triggered"
