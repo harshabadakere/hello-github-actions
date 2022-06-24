@@ -1,82 +1,31 @@
-name: Env Variable Passing
+name: Selective Deploy
 on:
   workflow_dispatch:
     inputs:
-      workflow:
-        type: choice
-        options:
-          - pass
-          - fail
-      jobs_to_run:
-        type: string
-        required: true
-        description: |
-          Enetr one or more jobs from  list.
-          job1,job2,job3
+      Deploy_All:
+        type: boolean
+      Deploy_1:
+        type: boolean
+      Deploy_2:
+        type: boolean
+      Deploy_3:
+        type: boolean
+      Deploy_4:
+        type: boolean
+      Deploy_5:
+        type: boolean  
   
 jobs:
   job1:
-    name: "Run Job1"
-    if: contains(github.event.inputs.jobs_to_run, 'job1')
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Conditionally fail the Job
-        run: |
-          if [[ ${{github.event.inputs.workflow}} == 'fail' ]]; then
-            exit 1
-          fi
-        
-      - name: Create a GH secret
-        if: failure()
-        uses: gliech/create-github-secret-action@v1
-        with:
-          name: WORKFLOW_FAILED
-          value: failure
-          pa_token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Running Job1
-        run: echo "Job1 Triggered"
-        
-  job2:
-    name: "Run Job2"
-    runs-on: ubuntu-latest
-    if: |
-      always() &&
-      (needs.job1.result == 'success' || needs.job1.result == 'skipped') &&
-      (contains(github.event.inputs.jobs_to_run, 'job2'))
-    needs: job1
-
-    permissions:
-      id-token: write
-      contents: read
-    
-    steps:
-      - name: Running Job2
-        run: echo "Job2 Triggered"
-        
-      - name: Set job status
-        if: |
-          always() &&
-          (needs.job1.result == 'failure')
-        run: exit 1
-          
-        
-  job3:
-    name: "Run Job3"
-    runs-on: ubuntu-latest
-    if: |
-      always() &&
-      (needs.job2.result == 'success' || needs.job2.result == 'skipped') &&
-      (contains(github.event.inputs.jobs_to_run, 'job3'))
-    needs: job2
-    
-    permissions:
-      id-token: write
-      contents: read
-    
-    steps:
-      - name: Running Job3
-        run: echo "Job3 Triggered"
-      
+    uses: /.github/workflows/shared-workflow.yml
+    with:
+      deploy_stacks: |
+        {
+          "deploy_all": "${{github.event.inputs.Deploy_All}}",
+          "deploy_shared_infra": "${{github.event.inputs.Deploy_1}}",
+          "deploy_eks_infra": "${{github.event.inputs.Deploy_2}}",
+          "deploy_eks_data": "${{github.event.inputs.Deploy_3}}",
+          "deploy_common_data": "${{github.event.inputs.Deploy_4}}",
+          "deploy_core_apis": "${{github.event.inputs.Deploy_5}}"
+        }  
   
