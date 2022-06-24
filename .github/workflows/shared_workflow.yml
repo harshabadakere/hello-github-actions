@@ -72,9 +72,6 @@ jobs:
       - name: Adding markdown
         run: |
           echo 'Stacks deployed in this run: :rocket:' >> $GITHUB_STEP_SUMMARY
-          deploy_list=${{toJson(inputs.deploy_stacks)}}
-          deploy_list=${deploy_list//[$'\n ']}
-          echo $deploy_list
-          stack_names=$(echo "${deploy_list}" | tr -d '\n ' | jq -r 'to_entries[] | select(.value == true) | .key')
+          stack_names=$(echo ${{toJson(inputs.deploy_stacks)}} | tr -d '\\n' | jq -r 'to_entries[] | select(.value == true) | .key')
           echo "$stack_names" >> $GITHUB_STEP_SUMMARY
       
