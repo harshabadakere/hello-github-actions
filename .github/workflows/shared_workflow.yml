@@ -73,6 +73,6 @@ jobs:
         run: |
           echo 'Stacks deployed in this run: :rocket:' >> $GITHUB_STEP_SUMMARY
           
-          stack_names=$(echo ${{toJson(inputs.deploy_stacks)}} | tr -d '\n ' | jq -r 'to_entries[] | select(.value == true) | .key')
+          stack_names=$(echo "${{toJson(inputs.deploy_stacks)}}" | tr -d '\n ' | jq -r 'to_entries[] | select(.value == true) | .key')
           echo "$stack_names" >> $GITHUB_STEP_SUMMARY
       
