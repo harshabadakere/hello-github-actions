@@ -59,4 +59,18 @@ jobs:
         run: |
           echo ${{fromJson(inputs.deploy_stacks).deploy_3}}
           echo "Job3 Triggered"
+          
+  workflow_summary:
+    name: Add Workflow Summary
+    runs-on: ubuntu-latest
+    needs: job3
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Adding markdown
+        run: |
+          echo 'Stacks deployed in this run: :rocket:' >> $GITHUB_STEP_SUMMARY
+          echo "${{toJson(inputs.deploy_stacks)}}" >> $GITHUB_STEP_SUMMARY
       
