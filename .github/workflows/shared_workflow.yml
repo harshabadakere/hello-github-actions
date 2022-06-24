@@ -18,7 +18,7 @@ jobs:
         #if: |
         #  (fromJson(inputs.deploy_stacks).deploy_all || fromJson(inputs.deploy_stacks).deploy_1))
         run: |
-          echo ${inputs.deploy_stacks}
+          echo ${{inputs.deploy_stacks}}
           echo ${{fromJson(inputs.deploy_stacks).deploy_1}}
           echo "Job1 Triggered"
         
