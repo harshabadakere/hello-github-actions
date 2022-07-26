@@ -17,7 +17,7 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: harsha924
+          approvers: harshabadakere
       - uses: actions/checkout@v1
       - name: Output Step
         id: sample
