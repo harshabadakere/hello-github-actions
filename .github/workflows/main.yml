@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: harshabadakere
       - uses: actions/checkout@v1
       - name: Output Step
         id: sample
