@@ -36,6 +36,8 @@ jobs:
   second:
     if: ${{github.event.inputs.second == 'true' }}
     uses: ./.github/workflows/second.yaml
+    with:
+      environment: dev
     needs: build
     
   third:
