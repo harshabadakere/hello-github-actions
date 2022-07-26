@@ -42,5 +42,5 @@ jobs:
     
   third:
     if: ${{github.event.inputs.third == 'true'}}
-    uses: ./.github/workflows/third.yml
+    uses: ./.github/workflows/third.yaml
     
