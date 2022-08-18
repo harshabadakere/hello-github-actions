@@ -8,11 +8,11 @@ jobs:
     runs-on: ubunutu-latest
     
     steps:
-      name: Execute Shell
-      run: |
-        echo "Hello User, Provide your details below:"
-        read -p 'username:' user
-        read -sp 'password:' pass
-        echo "Thanks $user for providing the above details"
+      - name: Execute Shell
+        run: |
+          echo "Hello User, Provide your details below:"
+          read -p 'username:' user
+          read -sp 'password:' pass
+          echo "Thanks $user for providing the above details"
     
   
