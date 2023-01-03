@@ -1,3 +1,4 @@
+name: Running jobs in a matrix
 on:
   schedule:
     - cron: "*/5 * * * *"
